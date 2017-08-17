@@ -1,6 +1,6 @@
-{$mode objfpc}{$H+}{$J-} // Just use this line in all modern sources
+{$mode objfpc}{$H+}{$J-} // Solo usa esta línea en todos los códigos fuentes modernos
 
-program MyProgram; // Save this file as myprogram.lpr
+program MiPrograma; // Graba este archivo como miprograma.lpr
 begin
-  Writeln('Hello world!');
+  Writeln('Hola mundo!');
 end.

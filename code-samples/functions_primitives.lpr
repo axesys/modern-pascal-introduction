@@ -1,25 +1,25 @@
 {$mode objfpc}{$H+}{$J-}
 
-program MyProgram;
+program MiPrograma;
 
-procedure MyProcedure(const A: Integer);
+procedure MiProcedimiento(const A: Integer);
 begin
-  Writeln('A + 10 is: ', A + 10);
+  Writeln('A + 10 es: ', A + 10);
 end;
 
-function MyFunction(const S: string): string;
+function MiFuncion(const S: string): string;
 begin
-  Result := S + 'strings are automatically managed';
+  Result := S + 'las cadenas son automáticamente manipuladas';
 end;
 
 var
   X: Single;
 begin
-  Writeln(MyFunction('Note: '));
-  MyProcedure(5);
+  Writeln(MiFuncion('Nota: '));
+  MiProcedimiento(5);
 
-  // Division using "/" always makes float result, use "div" for integer division
+  // La division usando "/" siempre regresa resultados flotantes, usa "div" para divisiones enteras
   X := 15 / 5;
-  Writeln('X is now: ', X); // scientific notation
-  Writeln('X is now: ', X:1:2); // 2 decimal places
+  Writeln('X es ahora: ', X); // notación cientifica
+  Writeln('X es ahora: ', X:1:2); // 2 decimales
 end.

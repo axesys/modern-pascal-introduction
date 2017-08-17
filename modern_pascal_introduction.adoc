@@ -1,4 +1,4 @@
-# Modern Object Pascal Introduction for Programmers
+# Modern Object Pascal introducción para programadores
 Michalis Kamburelis
 :toc: left
 :toclevels: 4
@@ -6,87 +6,87 @@ Michalis Kamburelis
 :source-highlighter: coderay
 :docinfo1:
 
-## Why
+## ¿Por qué?
 
-There are many books and resources about Pascal out there, but too many of them talk about the old Pascal, without classes, units or generics.
+Hay muchos libros y recursos sobre Pascal por ahí, pero también muchos de ellos hablan del antiguo Pascal, sin clases, unidades o genéricos.
 // Some of them talk about Pascal before it even had classes. Some of them show classes, as done in Delphi, but fail to mention more modern features, like generics.
 
-So I wrote this quick introduction to what I call *modern Object Pascal*. Most of the programmers using it don't really call it _"modern Object Pascal"_, we just call it  _"our Pascal"_. But when introducing the language, I feel it's important to emphasize that it's a modern, object-oriented language. It evolved a *lot* since the old (Turbo) Pascal that many people learned in schools long time ago. Feature-wise, it's quite similar to C++ or Java or C#.
+Así que escribí esta breve introducción a la que llamo *modern Object Pascal*. La mayoría de los programadores que lo usan en realidad no lo llaman _"modern Object Pascal"_, lo llamamos simplemente  _"our Pascal"_. Pero cuando introduces a un lenguaje, siento que es importante destacar que se trata de un lenguaje moderno, orientado a objetos. Ha evolucionado *enormemente* desde que el antiguo (Turbo) Pascal que muchas personas aprendieron en las escuelas hace mucho tiempo. En cuanto a prestaciones, es bastante similar a C ++ o Java o C#.
 
-* It has all the modern features you expect -- classes, units, interfaces, generics...
-* It's compiled to a fast, native code,
-* It's very type safe,
-* High-level but can also be low-level if you need it to be.
+* Tiene todas las características modernas que usted espera - clases, unidades, interfaces, genéricos ...
+* Se compila a un código rápido, nativo,
+* Es de tipo de muy seguro,
+* De alto nivel, pero también puede ser de bajo nivel, si lo necesita.
 
-It also has excellent, portable and open-source compiler called the _Free Pascal Compiler_, http://freepascal.org/ . And an accompanying IDE (editor, debugger, a library of visual components, form designer) called _Lazarus_ http://lazarus.freepascal.org/ . Myself, I'm the creator of _Castle Game Engine_, https://castle-engine.sourceforge.io/ , which is a cool portable 3D and 2D game engine using this language to create games on many platforms (Windows, Linux, MacOSX, Android, iOS, web plugin).
+También tiene un excelente compilador, portátil y de código abierto llamado el _compilador Free Pascal_, http://freepascal.org/ . Y un IDE de acompañamiento (editor, depurador, una biblioteca de componentes visuales, diseñador de formularios) llamadó _Lazarus_ http://lazarus.freepascal.org/ . Yo mismo, soy el creador del Castle Game Engine, _Castle Game Engine_, https://castle-engine.sourceforge.io/ , que es un motor de juego 2D y 3D portátil y fabuloso que usa este lenguaje para crear juegos en muchas plataformas (Windows, Linux, MacOSX , Android, iOS, plug-in web).
 
-This introduction is mostly directed at programmers who already have experience in other languages. We will not cover here the meanings of some universal concepts, like _"what is a class"_, we'll only show how to do them in Pascal.
+Esta introducción se dirige principalmente a los programadores que ya tienen experiencia en otros lenguajes. No vamos a cubrir aquí el significado de algunos conceptos universales, como _"lo que es una clase"_, solo mostramos cómo hacerlo en Pascal.
 
-## Basics
+## Fundamentos
 
-### "Hello world" program
+### El programa "Hola mundo"
 
 [source,pascal]
 ----
 include::code-samples/hello_world.lpr[]
 ----
 
-This is a complete program that you can _compile_ and _run_.
+Este es un programa completo que se puede _compilar_ y _ejecutar_.
 
-* If you use the command-line FPC, just create a new file `myprogram.lpr` and execute `fpc myprogram.lpr`.
-* If you use _Lazarus_, create a new project (menu _Project_ -> _New Project_ -> _Simple Program_). Save it as `myprogram` and paste this source code as the main file. Compile using the menu item _Run -> Compile_.
-* This is a command-line program, so in either case -- just run the compiled executable from the command-line.
+* Si utiliza la línea de comandos FPC, basta con crear un nuevo archivo `miprograma.lpr` y ejecutar `fpc miprograma.lpr`.
+* Si utiliza _Lazarus_, cree un nuevo proyecto (menú _Archivo_ -> _Nuevo Proyecto_ -> _Programa simple_). Guardarlo como `miprograma` y pega este código fuente como el archivo principal. Compilar usando el elemento de menú _Ejecutar -> Compilar_.
+* Este es un programa de línea de comandos, por lo que, en cualquier caso - basta con ejecutar el ejecutable compilado a partir de la línea de comandos.
 
-The rest of this article talks about the Object Pascal language, so don't expect to see anything more fancy than the command-line stuff. If you want to see something cool, just create a new GUI project in _Lazarus_ (_Project_ -> _New Project_ -> _Application_).
+El resto de este artículo habla sobre el lenguaje Object Pascal, así que no esperes ver nada más elegante que la línea de comandos. Si quieres ver algo fabuloso, solo crea un nuevo proyecto en la interfaz gráfica de usuario _Lazarus_ (_Archivo_ -> _Nuevo proyecto_ -> _Aplicación_).
 //Play around, drop some buttons on the form, handle their events (like `OnClick`).
-Voila -- a working GUI application, cross-platform, with native look everywhere, using a comfortable visual component library. The _Lazarus_ and _Free Pascal Compiler_ come with lots of ready units for networking, GUI, database, file formats (XML, json, images...), threading and everything else you may need. I already mentioned my cool _Castle Game Engine_ earlier:)
+Voila - una aplicación de interfaz gráfica de usuario de trabajo, multiplataforma, con aspecto nativo en todas partes, utilizando una cómoda biblioteca de componente visuales. El compilador _Lazarus_ y _Free Pascal_ viene con una gran cantidad de unidades listas para la creación de redes, interfaz gráfica de usuario, base de datos, formatos de archivo (XML, JSON, imágenes ...), hilos y todo lo que pueda necesitar. Ya he mencionado el fabuloso _Castle Game Engine_ antes :)
 // The libraries created in other languages (dll, so, dylib) can be easily used from FPC too (and for most of them, you'll find ready "header" units, and even units that wrap them in more modern object-oriented API).
 
-### Functions, procedures, primitive types
+### Funciones, procedimientos, tipos primitivos
 
 [source,pascal]
 ----
 include::code-samples/functions_primitives.lpr[]
 ----
 
-To return a value from a function, assign something to the magic `Result` variable. You can read and set the `Result` freely, just like a local variable.
+Para devolver un valor desde una función, asigna algo a la variable mágica `Result` Puede leer y cambiar la variable Result libremente al igual que una variable local.
 
 [source,pascal]
 ----
-function MyFunction(const S: string): string;
+function MiFuncion(const S: string): string;
 begin
-  Result := S + 'something';
-  Result := Result + ' something more!';
-  Result := Result + ' and more!';
+  Result := S + 'algo';
+  Result := Result + ' algo más!';
+  Result := Result + ' y más!';
 end;
 ----
 
-You can also treat the function name (like `MyFunction` in example above) as the variable, to which you can assign. But I would discourage it in new code, as it looks "fishy" when used on the right side of the assignment expression. Just use `Result` always when you want to read or set the function result.
+También puede tratar el nombre de la función (como `MiFuncion` en el ejemplo anterior) como una variable, a la que puede asignarse. Pero recomiendo no hacerlo en nuevo código, ya que parece "sospechoso" cuando se utiliza en el lado derecho de la expresión de asignación. Sólo tiene que usar `Result` siempre cuando se quiere leer o cambiar el resultado de la función.
 
-If you want to call the function itself recursively, you can of course do it. If you're calling a parameter-less function recursively, be sure to specify the parenthesis (even though in Pascal you can usually omit the parentheses for a parameter-less function), this makes a recursive call to a parameter-less function different from accessing this function's current result. Like this:
+Si desea llamar a la función misma de forma recursiva, puede hacerlo por supuesto. Si está llamando a una función sin parámetros de forma recursiva, asegúrese de especificar el paréntesis (a pesar de que en Pascal por lo general puede omitir los paréntesis para usar funciones sin parámetros), esto hace una llamada recursiva a una función sin parámetros diferente al resultado actual de esta función. Como esto:
 
 [source,pascal]
 ----
-function ReadIntegersUntilZero: string;
+function LeerEnterosHastaCero: string;
 var
   I: Integer;
 begin
   Readln(I);
   Result := IntToStr(I);
   if I <> 0 then
-    Result := Result + ' ' + ReadIntegersUntilZero();
+    Result := Result + ' ' + LeerEnterosHastaCero();
 end;
 ----
 
-You can call `Exit` to end the execution of the procedure or function before it reaches the final `end;`. If you call parameter-less `Exit` in a function, it will return the last thing you set as `Result`. You can also use `Exit(X)` construct, to set the function result and exit *now* -- this is just like `return X` construct in C-like languages.
+Puede llamar `Exit` para finalizar la ejecución del procedimiento o función antes de que llegue a la final `end;`. Si llama `Exit` en una función sin parámetros, devolverá el último valor asignado a `Result`. También puede utilizar el constructo `Exit(X)` construct, ) para establecer el resultado de la función y salir *now* - esto es como el `return X` en lenguajes de programación como C.
 
 [source,pascal]
 ----
-function AddName(const ExistingNames, NewName: string): string;
+function AgregaNombre(const NombresExistentes, NuevoNombre: string): string;
 begin
-  if ExistingNames = '' then
-    Exit(NewName);
-  Result := ExistingNames + ', ' + NewName;
+  if NombresExistentes = '' then
+    Exit(NuevoNombre);
+  Result := NombresExistentes + ', ' + NuevoNombre;
 end;
 ----
 
